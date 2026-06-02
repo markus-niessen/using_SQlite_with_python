@@ -29,7 +29,7 @@ with engine.connect() as connection:
         SELECT books.title, authors.name
         FROM books
         JOIN authors
-            ON books.author_id = authors.id
+            ON books.author_id = authors.author_id
         ORDER BY books.title ASC
     """))
 
