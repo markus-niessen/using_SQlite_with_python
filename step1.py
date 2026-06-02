@@ -37,3 +37,24 @@ with engine.connect() as connection:
 
     for row in rows:
         print(f"{row.title} ({row.name})")
+
+
+    # 4. Safe search
+    print("\nBook search:\n")
+
+    search_input = input("Enter a search term: ")
+
+    params = {"search": search_input}
+
+    query = """
+        SELECT title
+        FROM books
+        WHERE title = :search
+    """
+
+    results = connection.execute(text(query), params)
+
+    rows = results.fetchall()
+
+    for row in rows:
+        print(row.title)
